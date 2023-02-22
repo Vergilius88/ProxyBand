@@ -14,7 +14,7 @@ export const UsersListItem = ({ usrData, setUserId }: Props) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
 
-    const { name, username, email, id } = usrData
+    const { name, username, email, phone, website, address, company, id } = usrData
 
 
     const toPosts = () => {
@@ -24,12 +24,16 @@ export const UsersListItem = ({ usrData, setUserId }: Props) => {
 
     return (
         <li className="usersListItem" >
-            <p>Имя: <span>{name}</span> </p>
-            <p>Ник: <span>{username}</span> </p>
-            <p>Почта: <span>{email}</span> </p>
+            <p>Ім'я: <span>{name}</span> </p>
+            <p>Нік: <span>{username}</span> </p>
+            <p>Місце роботи: <span>{company.name}</span> </p>
+            <p>Пошта: <span>{email}</span> </p>
+            <p>Телефон: <span>{phone}</span></p>
+            <p>Домашня сторінка: <span>{website}</span> </p>
+            <p>Домашній адрес: <span>{address.zipcode} {address.street} {address.suite} {address.city}</span> </p>
             <div className="usersListItemButtonWrapper">
-                <button onClick={() => toPosts()}>Посты</button>
-                <button onClick={() => setUserId(id)}>Альбомы</button>
+                <button onClick={() => toPosts()}>Пости</button>
+                <button onClick={() => setUserId(id)}>Альбоми</button>
             </div>
         </li>
     )
