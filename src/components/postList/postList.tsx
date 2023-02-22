@@ -1,12 +1,15 @@
 import "./postListStyles.scss"
-import { testPostsData } from "../../assets/testData"
 import { PostListItem } from "./postListItem/postListItem"
+import { useAppSelector } from "../../redux/hooks"
+import { userPostsData } from "../../redux/postsPage/postPageSelector"
 
 
 export const PostList=()=>{
+    const posts = useAppSelector(userPostsData)
+
     return(
         <ul className="postList">
-            {testPostsData.map(post=><PostListItem key={post.id} post={post}/>)}
+            {posts?.map(post=><PostListItem key={post.id} post={post}/>)}
         </ul>
     )
 }

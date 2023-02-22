@@ -1,0 +1,13 @@
+.postItem{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 20rem;
+    h3{
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+    p{
+        font-size: 1.4rem;
+    }
+}

@@ -11,7 +11,7 @@ export const AlbumListItem = ({ album }: Props) => {
     const { title } = album
 
     return (
-        <li>
+        <li className="albumListItem">
             <h3>{title}</h3>
         </li>
     )

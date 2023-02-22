@@ -1,40 +1,35 @@
+import "./usersListItemStyles.scss"
+import { useNavigate } from "react-router-dom"
+import { routes } from "../../../assets/routes"
+import { User } from "../../../redux/Api/api"
+import { useAppDispatch } from "../../../redux/hooks"
+import { getUserPostList } from "../../../redux/postsPage/postPageOperation"
 
 interface Props {
-    user: {
-        id: number;
-        name: string;
-        username: string;
-        email: string;
-        address: {
-            street: string;
-            suite: string;
-            city: string;
-            zipcode: string;
-            geo: {
-                lat: string;
-                lng: string;
-            };
-        };
-        phone: string;
-        website: string;
-        company: {
-            name: string;
-            catchPhrase: string;
-            bs: string
-        };
-    }
+    usrData: User,
+    setUserId: (userId: number) => void
 }
 
-export const UsersListItem = ({ user }: Props) => {
-    const { name, username: nick, email } = user
+export const UsersListItem = ({ usrData, setUserId }: Props) => {
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate();
+
+    const { name, username, email, id } = usrData
+
+
+    const toPosts = () => {
+        dispatch(getUserPostList({ userId: id }))
+        navigate(routes.posts)
+    }
+
     return (
-        <li>
-            <p>Имя: {name}</p>
-            <p>Ник: {nick}</p>
-            <p>Почта: {email}</p>
-            <div>
-                <button>Пости</button>
-                <button>Альбоми</button>
+        <li className="usersListItem" >
+            <p>Имя: <span>{name}</span> </p>
+            <p>Ник: <span>{username}</span> </p>
+            <p>Почта: <span>{email}</span> </p>
+            <div className="usersListItemButtonWrapper">
+                <button onClick={() => toPosts()}>Посты</button>
+                <button onClick={() => setUserId(id)}>Альбомы</button>
             </div>
         </li>
     )

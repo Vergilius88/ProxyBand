@@ -1,16 +1,16 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import usersPageSlice from "./usersPage/usersPageSlice";
+import userPostsSlice from "./postsPage/postsPageSlice";
 
-export const store = configureStore({
-  reducer: {
-
-  },
+const reducer = combineReducers({
+  usersPage: usersPageSlice,
+  postsPage: userPostsSlice,
 });
 
-export type AppDispatch = typeof store.dispatch;
+export const store = configureStore({
+  reducer,
+});
+
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppDispatch = typeof store.dispatch;

@@ -1,0 +1,10 @@
+.albumListItem{
+margin-bottom: 2rem;
+h3{
+    font-size: 1.4rem;
+    font-weight: 700;
+    &::first-letter{
+        text-transform: uppercase;
+    }
+}
+}

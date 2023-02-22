@@ -1,17 +1,19 @@
+import { forwardRef } from "react"
 import "./modal.scss"
 
 interface Props {
     content: JSX.Element
-    click:any
+    hideModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Modal = ({content, click}:Props) => {
+export const Modal = forwardRef(({ content, hideModal }: Props, ref: any) => {
     return (
-        <div className="modalOverlay">
-            <div className="modalContentWrapper">
-                {content}
-                <button className="modalCloseButton" onClick={click}>&#9932;</button>
-            </div>
-        </div>
+        <div className="modalOverlay" >
+            <div className="modalContentWrapper"  ref={ref}>
+            {content}
+            <button className="modalCloseButton" onClick={() => hideModal(false)}>&#9932;</button>
+        </div></div>
+
+
     )
-}
+})

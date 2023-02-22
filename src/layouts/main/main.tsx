@@ -1,4 +1,4 @@
-
+import "./mainStyles.scss"
 interface Props {
     children?: JSX.Element | JSX.Element[];
 }

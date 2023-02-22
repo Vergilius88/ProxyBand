@@ -1,11 +1,20 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./assets/baseStyles/normalize.css"
 import { routes } from "./assets/routes";
 import { Header } from "./layouts/header/header";
 import { PostsPage } from "./pages/postsPage/postsPage";
 import { UsersPage } from "./pages/usersPage/usersPage";
+import { useAppDispatch } from "./redux/hooks";
+import { getUsersList } from "./redux/usersPage/usersPageOperations";
 
-function App() {
+export default function App() {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getUsersList())
+  }, [])
+
   return (
     <>
       <Routes>
@@ -26,4 +35,3 @@ function App() {
   );
 }
 
-export default App;
