@@ -4,23 +4,18 @@ import { routes } from "../../../assets/routes"
 import { User } from "../../../redux/api/api"
 import { useAppDispatch } from "../../../redux/hooks"
 import { getUserPostList } from "../../../redux/postsPage/postPageOperation"
+import { getUserAlbumsList } from "../../../redux/usersPage/usersPageOperations"
 
 interface Props {
     userData: User,
-    setUserId: (userId: number) => void
+    showModal: () => void
 }
 
-export const UsersListItem = ({ userData, setUserId }: Props) => {
+export const UsersListItem = ({ userData, showModal }: Props) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
 
     const { name, username, email, phone, website, address, company, id } = userData
-
-
-    const toPosts = () => {
-        dispatch(getUserPostList({ userId: id }))
-        navigate(routes.posts)
-    }
 
     return (
         <li className="usersListItem" >
@@ -32,8 +27,8 @@ export const UsersListItem = ({ userData, setUserId }: Props) => {
             <p>Домашня сторінка: <span>{website}</span> </p>
             <p>Домашній адрес: <span>{address.zipcode} {address.street} {address.suite} {address.city}</span> </p>
             <div className="usersListItemButtonWrapper">
-                <button onClick={() => toPosts()}>Пости</button>
-                <button onClick={() => setUserId(id)}>Альбоми</button>
+                <button onMouseEnter={() => { dispatch(getUserPostList({ userId: id })) }} onClick={() => navigate(routes.posts)} >Пости</button>
+                <button onMouseEnter={() => { dispatch(getUserAlbumsList({ userId: id })) }} onClick={() => showModal()}>Альбоми</button>
             </div>
         </li>
     )

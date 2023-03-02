@@ -1,6 +1,5 @@
 import { useRef, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getUserAlbumsList } from "../../redux/usersPage/usersPageOperations"
+import { useAppSelector } from "../../redux/hooks"
 import { usersListData } from "../../redux/usersPage/usersPageSelector"
 import { useOnClickOutside } from "../../utils/outsideClick/outsideClick"
 import { AlbumList } from "../albumList/albumList"
@@ -10,15 +9,13 @@ import "./usersListStyles.scss"
 
 
 export const UsersList = () => {
-    const dispatch = useAppDispatch()
     const ref = useRef();
-    
+
     const users = useAppSelector(usersListData)
     const [visibilityModal, setVisibilityModal] = useState(false)
 
-    const showModal = (userId: number) => {
+    const showModal = () => {
         setVisibilityModal(true);
-        dispatch(getUserAlbumsList({ userId: userId }))
     }
     const hideModal = () => {
         setVisibilityModal(false);
@@ -32,9 +29,9 @@ export const UsersList = () => {
     return (
         <>
             <ul className="usersList">
-                {users?.map(user => <UsersListItem key={user.id} userData={user} setUserId={showModal} />)}
+                {users?.map(user => <UsersListItem key={user.id} userData={user} showModal={showModal} />)}
             </ul>
-            {visibilityModal && <Modal content={<AlbumList />} hideModal={hideModal}  ref={ref} />}
+            {visibilityModal && <Modal content={<AlbumList />} hideModal={hideModal} ref={ref} />}
 
         </>
     )
