@@ -1,20 +1,20 @@
 import "./usersListItemStyles.scss"
 import { useNavigate } from "react-router-dom"
 import { routes } from "../../../assets/routes"
-import { User } from "../../../redux/Api/api"
+import { User } from "../../../redux/api/api"
 import { useAppDispatch } from "../../../redux/hooks"
 import { getUserPostList } from "../../../redux/postsPage/postPageOperation"
 
 interface Props {
-    usrData: User,
+    userData: User,
     setUserId: (userId: number) => void
 }
 
-export const UsersListItem = ({ usrData, setUserId }: Props) => {
+export const UsersListItem = ({ userData, setUserId }: Props) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
 
-    const { name, username, email, phone, website, address, company, id } = usrData
+    const { name, username, email, phone, website, address, company, id } = userData
 
 
     const toPosts = () => {

@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Albums, User } from "../Api/api";
+import { Albums, User } from "../api/api";
 import { getUserAlbumsList, getUsersList } from "./usersPageOperations";
 
 interface Props {
   users: User[];
-  albums:Albums[]
+  albums: Albums[];
 }
 
 const initialState: Props = {
   users: [],
-  albums:[]
+  albums: [],
 };
 
 const usersPageSlice = createSlice({

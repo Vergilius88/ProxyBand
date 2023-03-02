@@ -1,22 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Posts } from "../Api/api";
+import { Posts } from "../api/api";
 import { getUserPostList } from "./postPageOperation";
 
 interface Props {
   posts: Posts[];
-  userId:number|null
+  userId: number | null;
 }
 
 const initialState: Props = {
   posts: [],
-  userId: null
+  userId: null,
 };
 
 const userPostsSlice = createSlice({
   name: "userPostsSlice",
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getUserPostList.fulfilled, (state, data) => {
       state.posts = data.payload;

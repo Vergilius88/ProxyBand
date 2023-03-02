@@ -32,7 +32,7 @@ export const UsersList = () => {
     return (
         <>
             <ul className="usersList">
-                {users?.map(user => <UsersListItem key={user.id} usrData={user} setUserId={showModal} />)}
+                {users?.map(user => <UsersListItem key={user.id} userData={user} setUserId={showModal} />)}
             </ul>
             {visibilityModal && <Modal content={<AlbumList />} hideModal={hideModal}  ref={ref} />}
 
